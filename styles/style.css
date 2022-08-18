@@ -10,5 +10,61 @@
 :root {
     --green: #596D48;
     --light-grey: #E5E7EB;
-    
+    --grey: rgba(53, 53, 53, 0.5);
+    --white: white;
+}
+
+body {
+    font-family: 'Overpass', sans-serif;
+    font-size: 16px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+.container-logo {
+    position: absolute;
+    height: 8rem;
+    width: 100%;
+    top: 2.5rem;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--grey);
+}
+.container-logo img {
+    height: 60%;
+    display: inline;
+}
+.container-logo span {
+    font-family: 'Norse-Bold';
+    font-size: 4rem;
+    color: var(--white);
+    padding-left: 1rem;
+    letter-spacing: 5px;
+}
+.image-holder {
+    overflow-y: hidden;
+    height: 15rem;
+}
+
+form div {
+    position: relative;
+    margin: 1rem 0;
+    width: calc(100% - 2rem);
+}
+input {
+    width: 100%;
+    margin: 0 1rem;
+    display: inline-block;
+}
+label {
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    transition: .5s;
+}
+
+input:focus ~ label {
+    top: -20px;
+    font-size: 0.75rem;
 }

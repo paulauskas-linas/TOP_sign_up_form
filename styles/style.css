@@ -12,6 +12,8 @@
     --light-grey: #E5E7EB;
     --grey: rgba(53, 53, 53, 0.5);
     --white: white;
+    --blue: #436eb5;
+    --red: #e04545;
 }
 
 body {
@@ -19,6 +21,22 @@ body {
     font-size: 16px;
     display: grid;
     grid-template-columns: 1fr;
+    margin: 0;
+}
+.container-left-side {
+    position: relative;
+}
+.credits {
+    position: relative;
+    bottom: 1rem;
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+    color: var(--white);
+    font-size: 0.75rem;
+}
+.credits a {
+    font-style: italic;
 }
 .container-logo {
     position: absolute;
@@ -35,7 +53,7 @@ body {
     height: 60%;
     display: inline;
 }
-.container-logo span {
+.container-logo p {
     font-family: 'Norse-Bold';
     font-size: 4rem;
     color: var(--white);
@@ -46,25 +64,173 @@ body {
     overflow-y: hidden;
     height: 15rem;
 }
-
+.intro-text {
+    padding: 0 1rem;
+}
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding-bottom: 1rem;
+    box-shadow: var(--grey) 0px 8px 22px;
+    place-items: center;
+}
+legend  {
+    font-size: 1.5rem;
+    font-weight: 600;
+    place-self: center;
+    padding: 0.25rem;
+    margin-top: 0.5rem;
+}
 form div {
     position: relative;
-    margin: 1rem 0;
     width: calc(100% - 2rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 input {
-    width: 100%;
-    margin: 0 1rem;
     display: inline-block;
+    width: calc(100% - 2rem);
+    height: 3rem;
+    margin: 0.5rem 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: var(--light-grey) 1px solid;
+    border-radius: 5px;
+    outline: none;
+    font-size: 1rem;
 }
 label {
     position: absolute;
-    left: 1rem;
-    top: 0;
+    left: 1.25rem;
+    top: 1.25rem;
     transition: .5s;
+    font-size: 1rem;
+    padding-left: 1rem;
+}
+input:focus ~ label, 
+input:not(:placeholder-shown) ~ label {
+    top: 0;
+    font-size: 1rem;
+    color: var(--grey);
+    background-color: var(--white);
+    padding: 0 0.5rem;
+}
+input:focus {
+    border: var(--blue) solid 1px;
+    box-shadow: var(--grey) 1px 2px 5px;
+}
+input:not(:placeholder-shown) {
+    border-color: var(--red);
+    border-width: 2px;
+}
+input:not(:placeholder-shown) ~ span {
+    opacity: 1;
+    height: 1rem;
+}
+input:valid {
+    border-color: var(--green);
+    border-width: 2px;
 }
 
-input:focus ~ label {
-    top: -20px;
+input:valid ~ span {
+    opacity: 0;
+    height: 0;
+}
+span {
     font-size: 0.75rem;
+    margin-left: 1rem;
+    color: var(--red);
+    margin-top: 0.25rem;
+    height: 0;
+    opacity: 0;
+}
+button {
+    display: block;
+    width: 13rem;
+    margin: 1rem auto;
+    padding: 0.2rem;
+    background-color: var(--green);
+    border: solid var(--green);
+    border-radius: 5px;
+    box-shadow: var(--grey) 2px 2px 2px 1px;
+    font-size: 1.4rem;
+    color: var(--white);
+}
+button:hover {
+    cursor: pointer;
+}
+button:active {
+    transform:translateY(0.1rem);
+    box-shadow: var(--grey) 2px 2px 2px 1px inset;
+}
+.outro-text {
+    display: block;
+    width: 16rem;
+    margin: 1rem auto;
+}
+.outro-text a {
+    color: var(--green);
+    font-weight: bold;
+}
+
+@media (min-width: 45rem) {
+    html {
+        height: 100%;
+        width: 100%;
+    }
+    body {
+        height: 100%;
+        width: 100%;
+        grid-template-columns: repeat(9, 1fr);
+        /* gap: 10px; */
+    }
+    .container-left-side {
+        position: relative;
+        grid-column: 1/4;
+    }
+    .container-logo {
+        position: absolute;
+        top: 5rem;
+        /* opacity: .8; */
+        width: 100%;
+    }
+    .image-holder {
+        position: relative;
+        overflow-y: visible;
+        height: 100%;
+        top: 0;
+    }
+    .image-holder img {
+        height: 100%;
+        object-fit: cover;
+    }
+    .container-right-side {
+        grid-column: 4/10;
+        place-self: center;
+        width: 100%;
+    }
+    form {
+        grid-template-columns: repeat(5, 1fr);
+        height: 22rem;
+    }
+    form div:nth-child(even) {
+        grid-column: 1/3;
+    }
+    form div:nth-child(odd) {
+        grid-column: 3/5;
+    }
+    legend {
+        grid-column: span 2;
+        justify-self: left;
+        margin-left: 1rem;
+    }
+    form div {
+        width: 100%;
+    }
+    button, .outro-text {
+        margin-right: auto;
+        margin-left: 1rem;
+    }
 }
